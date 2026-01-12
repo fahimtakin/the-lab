@@ -35,7 +35,13 @@ sprite_sheet = spirtesheet.SpriteSheet(sprite_image)
 
 
 for i in range(animation_steps):
-    animation_list.append(sprite_sheet.get_image(i, 191, 191, 1, BLACK ))
+    animation_list.append(sprite_sheet.get_image(i, 199, 191, 1, BLACK ))
+
+
+frame = 0
+last_update = pygame.time.get_ticks()
+animation_cooldown = 100
+
 
 
 
@@ -52,8 +58,17 @@ while running:
 
 
     # pygame.draw.circle(screen, "red", player_pos, 40)
-    for i in range(len(animation_list)):
-        screen.blit(animation_list[i], (i* 72,0))
+    current_time = pygame.time.get_ticks()
+
+    if current_time - last_update >= animation_cooldown:
+        frame += 1
+        last_update = current_time
+        if frame >= animation_steps:
+            frame = 0
+
+
+    screen.blit(animation_list[frame], (0, 0))
+
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_w]:
