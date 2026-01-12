@@ -2,7 +2,7 @@
 import pygame
 from pygame.examples.sprite_texture import sprite
 
-import spirtesheet
+import spritesheet
 
 # pygame setup
 pygame.init()
@@ -31,7 +31,7 @@ BLACK = (0, 0, 0)
 animation_list = []
 animation_steps = 6
 
-sprite_sheet = spirtesheet.SpriteSheet(sprite_image)
+sprite_sheet = spritesheet.SpriteSheet(sprite_image)
 
 
 for i in range(animation_steps):
