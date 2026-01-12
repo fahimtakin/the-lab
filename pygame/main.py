@@ -1,4 +1,5 @@
 # Example file showing a circle moving on screen
+import player
 import pygame
 from pygame.examples.sprite_texture import sprite
 
@@ -13,7 +14,10 @@ dt = 0
 
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
-sprite_image = pygame.image.load("assets/player_attack_ii.png").convert_alpha()
+player = player.Player()
+player = player.assets[0]
+
+sprite_image = pygame.image.load(player).convert_alpha()
 
 BLACK = (0, 0, 0)
 
