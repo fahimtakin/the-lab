@@ -4,6 +4,7 @@ import pygame
 from pygame.examples.sprite_texture import sprite
 
 import spritesheet
+from data.frame_generator import frame_generator
 
 # pygame setup
 pygame.init()
@@ -15,11 +16,8 @@ dt = 0
 player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
 player = player.Player()
-player = player.assets[0]
 
-sprite_image = pygame.image.load(player).convert_alpha()
-
-BLACK = (0, 0, 0)
+[animation_list, animation_steps, animation_cooldown] = frame_generator(player)
 
 
 # class Player(pygame.sprite.Sprite):
@@ -32,22 +30,8 @@ BLACK = (0, 0, 0)
 #
 
 
-animation_list = []
-animation_steps = 6
-
-sprite_sheet = spritesheet.SpriteSheet(sprite_image)
-
-
-for i in range(animation_steps):
-    animation_list.append(sprite_sheet.get_image(i, 199, 191, 1, BLACK ))
-
-
 frame = 0
 last_update = pygame.time.get_ticks()
-animation_cooldown = 100
-
-
-
 
 
 while running:
