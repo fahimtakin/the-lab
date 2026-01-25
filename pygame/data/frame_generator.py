@@ -1,28 +1,16 @@
 import pygame
+from spritesheet import SpriteSheet
 
-import spritesheet
+BLACK = (0, 0, 0)
 
+def frame_generator(path, frame_count, width, height, scale=1):
+    sprite_image = pygame.image.load(path).convert_alpha()
+    sprite_sheet = SpriteSheet(sprite_image)
 
-def frame_generator(character):
+    frames = []
+    for i in range(frame_count):
+        frames.append(
+            sprite_sheet.get_image(i, width, height, scale, BLACK)
+        )
 
-    animation_cooldown = 100
-
-    character_assets = character.assets[0]
-
-    sprite_image = pygame.image.load(character_assets).convert_alpha()
-
-    BLACK = (0, 0, 0)
-
-    animation_list = []
-    animation_steps = int(character.assets[1])
-
-    sprite_sheet = spritesheet.SpriteSheet(sprite_image)
-
-    for i in range(animation_steps):
-        animation_list.append(sprite_sheet.get_image(i, 199, 191, 1, BLACK))
-
-
-    return [animation_list, animation_steps, animation_cooldown]
-
-
-
+    return frames
